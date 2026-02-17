@@ -10,37 +10,17 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import tests.base.BaseTest;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.Duration;
 
-public class SmokeHomeTest {
-    private WebDriver driver;
-    private WebDriverWait wait;
-
-    @BeforeEach
-    void setUp() {
-        WebDriverManager.chromedriver().setup();
-
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--window-size=1400,900");
-
-        driver = new ChromeDriver(options);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    }
-
-    @AfterEach
-    void tearDown() {
-        if (driver != null ) {
-            driver.quit();
-        }
-    }
-
+public class SmokeHomeTest extends BaseTest {
     @Test
     void homePage_shouldOpen() {
-        driver.get("https://practice.expandtesting.com/");
+        open("/");
 
         WebElement h1 = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath("(//h2)[1]"))
