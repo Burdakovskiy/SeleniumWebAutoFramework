@@ -2,6 +2,8 @@ package tests.base;
 
 import framework.core.config.ConfigLoader;
 import framework.core.driver.DriverFactory;
+import framework.core.waits.Waits;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
@@ -12,6 +14,7 @@ import java.time.Duration;
 public abstract class BaseTest {
     protected WebDriver driver;
     protected WebDriverWait wait;
+    protected Waits waits;
 
     @BeforeEach
     void setUp() {
@@ -19,6 +22,7 @@ public abstract class BaseTest {
 
         int timeout = ConfigLoader.config().timeoutSeconds();
         wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+        waits = new Waits(driver, wait);
     }
 
     @AfterEach
