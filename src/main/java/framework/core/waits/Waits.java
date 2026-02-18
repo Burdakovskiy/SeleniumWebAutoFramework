@@ -1,18 +1,15 @@
 package framework.core.waits;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public final class Waits {
 
-    private final WebDriver driver;
     private final WebDriverWait wait;
 
-    public Waits(WebDriver driver, WebDriverWait wait) {
-        this.driver = driver;
+    public Waits(WebDriverWait wait) {
         this.wait = wait;
     }
 
@@ -46,13 +43,5 @@ public final class Waits {
 
     public boolean attributeContains(By locator, String attr, String part) {
         return wait.until(ExpectedConditions.attributeContains(locator, attr, part));
-    }
-
-    public boolean isVisible(By locator) {
-        try {
-            return visible(locator).isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
     }
 }
